@@ -1,0 +1,15 @@
+[Unit]
+Description=Handle files dropped by the scanner
+After=network.target smb.service
+
+[Service]
+User=contentmaster
+Group=docker
+WorkingDirectory=/home/contentmaster/share
+EnvironmentFile=/opt/scanmagic/.env
+ExecStart=/opt/scanmagic/scanmagic.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
